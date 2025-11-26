@@ -3,6 +3,7 @@ import { TextInput, PasswordInput, Button, Paper, Title, Container, Text, Anchor
 import { useLogin } from '../../entities/StoreAuth/hooks/useAuth'
 import { loginSchema } from '../../entities/StoreAuth/shemas/authShemas'
 import type { LoginCredentials } from '../../entities/StoreAuth/model/types'
+import { Link } from 'react-router-dom'
 
 export function LoginPage() {
   const { mutate: login, isPending, isError, error } = useLogin()
@@ -36,7 +37,7 @@ export function LoginPage() {
       <Title ta="center">Welcome back!</Title>
       <Text c="dimmed" size="sm" ta="center" mt={5}>
         Don't have an account yet?{' '}
-        <Anchor size="sm" component="button">
+        <Anchor size="sm" component={Link} to="/register">
           Create account
         </Anchor>
       </Text>

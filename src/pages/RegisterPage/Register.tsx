@@ -3,6 +3,7 @@ import { TextInput, PasswordInput, Button, Paper, Title, Container, Text, Anchor
 import { useRegister } from '../../entities/StoreAuth/hooks/useAuth'
 import { registerSchema } from '../../entities/StoreAuth/shemas/authShemas'
 import type { RegisterData } from '../../entities/StoreAuth/model/types'
+import { Link } from 'react-router-dom'
 
 export function RegisterPage() {
   const { mutate: register, isPending, isError, error } = useRegister()
@@ -38,7 +39,7 @@ export function RegisterPage() {
       <Title ta="center">Create an account</Title>
       <Text c="dimmed" size="sm" ta="center" mt={5}>
         Already have an account?{' '}
-        <Anchor size="sm" component="button">
+        <Anchor size="sm" component={Link} to="/login">
           Sign in
         </Anchor>
       </Text>

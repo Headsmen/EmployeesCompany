@@ -24,7 +24,7 @@ export interface AuthState {
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
-  login: (userData: User, token: string) => void;
-  logout: () => void;
   initAuth: () => void;
+  login: (user: User, token: string) => void; 
+  logout: () => void;
 }

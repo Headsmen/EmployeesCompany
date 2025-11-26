@@ -1,68 +1,87 @@
-import axios from "axios";
-import type { AxiosInstance } from "axios";
-import type { LoginCredentials, RegisterData, AuthResponse, User } from "../model/types";
 
-// Создаем настроенный instance axios
-const axiosInstance: AxiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    timeout: 10000,
-});
+import type { LoginCredentials, RegisterData, AuthResponse, User } from '../model/types';
 
-// Interceptor для добавления токена к запросам
-axiosInstance.interceptors.request.use(
-    (config) => {
-        const authData = localStorage.getItem('auth-storage');
-        if (authData) {
-            try {
-                const { state } = JSON.parse(authData);
-                if (state?.token) {
-                    config.headers.Authorization = `Bearer ${state.token}`;
-                }
-            } catch (error) {
-                console.error('Error parsing auth token:', error);
-            }
-        }
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
+const getUsersFromStorage = (): User[] => {
+  const users = localStorage.getItem('mock-users');
+  return users ? JSON.parse(users) : [];
+};
 
-// Interceptor для обработки ответов и ошибок
-axiosInstance.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        if (error.response?.status === 401) {
-            // Токен недействителен - очищаем хранилище
-            localStorage.removeItem('auth-storage');
-            window  .location.href = '/login';
-        }
-        return Promise.reject(error);
-    }
-);
+const saveUsersToStorage = (users: User[]) => {
+  localStorage.setItem('mock-users', JSON.stringify(users));
+};
+
+const generateMockToken = (email: string) => {
+  return `mock-jwt-token-${btoa(email)}-${Date.now()}`;
+};
 
 export const authApi = {
-    login: async (credentials: LoginCredentials): Promise<AuthResponse> => {
-        const response = await axiosInstance.post<AuthResponse>('/auth/login', credentials);
-        return response.data;
-    },
+  login: async (credentials: LoginCredentials): Promise<AuthResponse> => {
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
-    register: async (userData: RegisterData): Promise<AuthResponse> => {
-        const response = await axiosInstance.post<AuthResponse>('/auth/register', userData);
-        return response.data;
-    },
+    const users = getUsersFromStorage();
+    const user = users.find(u => u.email === credentials.email);
 
-    getProfile: async (): Promise<User> => {
-        const response = await axiosInstance.get<User>('/auth/profile');
-        return response.data;
-    },
-
-    logout: async (): Promise<void> => {
-        await axiosInstance.post('/auth/logout');
-        localStorage.removeItem('auth-storage');
+    if (!user) {
+      throw new Error('User not found');
     }
+
+    if (!credentials.password) {
+      throw new Error('Invalid password');
+    }
+
+    const token = generateMockToken(credentials.email);
+
+    return {
+      user,    // сначала user
+      token    // потом token
+    };
+  },
+
+  register: async (data: RegisterData): Promise<AuthResponse> => {
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    const users = getUsersFromStorage();
+    
+    const existingUser = users.find(u => u.email === data.email);
+    if (existingUser) {
+      throw new Error('User with this email already exists');
+    }
+
+    const newUser: User = {
+      id: Date.now().toString(),
+      email: data.email,
+      name: `${data.firstName} ${data.lastName}`,
+      role: 'user'
+    };
+
+    users.push(newUser);
+    saveUsersToStorage(users);
+
+    const token = generateMockToken(data.email);
+
+    return {
+      user: newUser,    // сначала user
+      token             // потом token
+    };
+  },
+
+  logout: async (): Promise<void> => {
+    await new Promise(resolve => setTimeout(resolve, 500));
+  }
+};
+
+// Функция для инициализации тестового пользователя
+export const initializeMockData = () => {
+  const users = getUsersFromStorage();
+  if (users.length === 0) {
+    const testUser: User = {
+      id: '1',
+      email: 'test@example.com',
+      name: 'Test User',
+      role: 'user'
+    };
+    users.push(testUser);
+    saveUsersToStorage(users);
+    console.log('Test user created: test@example.com (any password)');
+  }
 };
