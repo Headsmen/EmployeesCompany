@@ -1,18 +1,18 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { AppProviders } from "./providers/providers";
-import { useAuthStore } from "../entities/StoreAuth/model/store";
+import { useSessionStore } from "@/entities/session";
 import Main from "../pages/mainPage/Main";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import './styles/index.css'
 import RegisterPage from "../pages/RegisterPage/Register";
 
 export function App() {
-  const { isAuthenticated, initAuth } = useAuthStore();
+  const { isAuthenticated, initSession } = useSessionStore();
 
   useEffect(() => {
-    initAuth();
-  }, [initAuth]);
+    initSession();
+  }, [initSession]);
 
   return (
     <AppProviders>

@@ -1,0 +1,117 @@
+.SideMenu {
+    width: 320px;
+    min-height: 00vh;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    border-right: 1px solid #e9ecef;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.userSection {
+    flex: 1;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.userBlock,
+.companyBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f1f3f5;
+    transition: all 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+    }
+}
+
+.icon {
+    color: #495057;
+    opacity: 0.7;
+}
+
+.label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #868e96;
+}
+
+.userName {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #212529;
+}
+
+.DropDown {
+    width: 100%;
+}
+
+.navigation {
+    margin-top: 1rem;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #495057;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+    border: 1px solid transparent;
+
+    &:hover {
+        background: #f8f9fa;
+        border-color: #e9ecef;
+        transform: translateX(4px);
+    }
+
+    &.active {
+        background: linear-gradient(135deg, #228be6 0%, #1c7ed6 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(34, 139, 230, 0.3);
+        border-color: transparent;
+
+        .menuIcon {
+            color: white;
+        }
+
+        &:hover {
+            transform: translateX(4px);
+            box-shadow: 0 6px 16px rgba(34, 139, 230, 0.4);
+        }
+    }
+}
+
+.menuIcon {
+    color: #495057;
+    transition: color 0.2s ease;
+}
+
+.userNotAuth {
+    padding: 1.5rem;
+    text-align: center;
+    color: #868e96;
+    font-weight: 500;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}

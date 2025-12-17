@@ -1,0 +1,48 @@
+.input {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #000000;
+
+  &:hover {
+
+    box-shadow: 0 0 0 3px rgb(124, 124, 124);
+  }
+
+  &:focus,
+  &:focus-within {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(125, 125, 125, 0.1);
+  }
+}
+
+.dropdown {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.option {
+  padding: 10px 12px;
+  color: #000000;
+  border-bottom: 1px solid grey;
+  &:hover {
+    background-color: #f3f4f6;
+  }
+
+  &[data-selected] {
+    background-color: #3b82f6;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #2563eb;
+    }
+  }
+}
+
+.label {
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}

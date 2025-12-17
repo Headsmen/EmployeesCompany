@@ -1,11 +1,21 @@
-import React from 'react'
+import { Container } from '@mantine/core';
+import { SideMenu } from '@/widgets/sideMenuLeft';
+import { EmployeesList } from '@/widgets/EmployeesList';
+import styles from './Main.module.scss';
 
-function Main() {
+export const Main = () => {
   return (
-    <div>
-      QWERTYUIOP
-    </div>
-  )
-}
+    <div className={styles.mainLayout}>
+      <SideMenu />
 
-export default Main
+      <main className={styles.content}>
+        <Container className={styles.container}>
+
+          <EmployeesList />
+        </Container>
+      </main>
+    </div>
+  );
+};
+
+export default Main;

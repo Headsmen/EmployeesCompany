@@ -1,8 +1,6 @@
 import { useForm } from '@mantine/form'
 import { TextInput, PasswordInput, Button, Paper, Title, Container, Text, Anchor, Stack } from '@mantine/core'
-import { useLogin } from '../../entities/StoreAuth/hooks/useAuth'
-import { loginSchema } from '../../entities/StoreAuth/shemas/authShemas'
-import type { LoginCredentials } from '../../entities/StoreAuth/model/types'
+import { useLogin, loginSchema, type LoginCredentials } from '@/features/auth'
 import { Link } from 'react-router-dom'
 
 export function LoginPage() {

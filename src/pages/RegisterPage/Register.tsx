@@ -1,8 +1,6 @@
 import { useForm } from '@mantine/form'
 import { TextInput, PasswordInput, Button, Paper, Title, Container, Text, Anchor, Stack } from '@mantine/core'
-import { useRegister } from '../../entities/StoreAuth/hooks/useAuth'
-import { registerSchema } from '../../entities/StoreAuth/shemas/authShemas'
-import type { RegisterData } from '../../entities/StoreAuth/model/types'
+import { useRegister, registerSchema, type RegisterData } from '@/features/auth'
 import { Link } from 'react-router-dom'
 
 export function RegisterPage() {
