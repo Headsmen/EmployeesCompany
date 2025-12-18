@@ -1,14 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { enterprisesApi } from '../api/enterprisesApi';
+import { enterprisesApi } from '@/shared/api';
+import { DEFAULT_ENTERPRISES } from '../config';
 import type { Enterprise, CreateEnterpriseDto, UpdateEnterpriseDto } from './types';
-
-// Дефолтные предприятия (для разработки)
-const DEFAULT_ENTERPRISES: Enterprise[] = [
-  { id: '1', name: 'ООО "Рога и Копыта"', description: 'Основное предприятие' },
-  { id: '2', name: 'ИП Иванов', description: 'Дополнительное предприятие' },
-  { id: '3', name: 'ООО "Технологии"', description: 'IT компания' },
-];
 
 interface EnterprisesState {
   enterprises: Enterprise[];

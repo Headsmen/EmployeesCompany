@@ -1,1 +1,1 @@
-export { EnterpriseSelector } from './EnterpriseSelector';
+export { EnterpriseSelector } from './ui/EnterpriseSelector';

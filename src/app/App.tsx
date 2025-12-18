@@ -2,10 +2,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { AppProviders } from "./providers/providers";
 import { useSessionStore } from "@/entities/session";
-import Main from "../pages/mainPage/Main";
-import LoginPage from "../pages/LoginPage/LoginPage";
+import Main from "../pages/mainPage/ui/Main";
+import LoginPage from "../pages/LoginPage/ui/LoginPage";
 import './styles/index.css'
-import RegisterPage from "../pages/RegisterPage/Register";
+import RegisterPage from "../pages/RegisterPage/ui/Register";
 
 export function App() {
   const { isAuthenticated, initSession } = useSessionStore();
@@ -18,12 +18,6 @@ export function App() {
     <AppProviders>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/friends" element={<FriendsPage />} />
-          <Route path="/chat" element={<ChatPage />} />
-          <Route path="/music" element={<MusicPage />} /> */}
-
-          {/* Общие маршруты для всех пользователей */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           

@@ -1,0 +1,15 @@
+.form {
+  width: 100%;
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: flex-end;
+
+    button {
+      flex: 1;
+      min-width: 100px;
+    }
+  }
+}

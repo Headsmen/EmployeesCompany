@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { employeesApi } from '../api/employeesApi';
+import { employeesApi } from '@/shared/api';
 import type { Employee, CreateEmployeeDto, UpdateEmployeeDto } from './types';
 
 interface EmployeesState {
